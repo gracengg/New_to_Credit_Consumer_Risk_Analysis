@@ -1,87 +1,97 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- Mobile Navigation ---
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
+document.addEventListener('DOMContentLoaded', () => {
 
-    if (navToggle && navMenu) {
-        navToggle.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-            const isOpen = navMenu.classList.contains('active');
-            navToggle.setAttribute('aria-expanded', String(isOpen));
-
-            // Animate Hamburger
-            const bars = navToggle.querySelectorAll('.bar');
-            if (isOpen) {
-                bars[0].style.transform = 'translateY(6px) rotate(45deg)';
-                bars[1].style.opacity = '0';
-                bars[2].style.transform = 'translateY(-6px) rotate(-45deg)';
-            } else {
-                bars[0].style.transform = 'translateY(0) rotate(0)';
-                bars[1].style.opacity = '1';
-                bars[2].style.transform = 'translateY(0) rotate(0)';
-            }
+  /* ── Mobile nav ── */
+  const toggle = document.getElementById('nav-toggle');
+  const menu   = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      const bars = toggle.querySelectorAll('.bar');
+      bars[0].style.transform = open ? 'translateY(6.5px) rotate(45deg)' : '';
+      bars[1].style.opacity   = open ? '0' : '';
+      bars[2].style.transform = open ? 'translateY(-6.5px) rotate(-45deg)' : '';
+    });
+    document.querySelectorAll('.nav-link').forEach(l => {
+      l.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.querySelectorAll('.bar').forEach(b => {
+          b.style.transform = '';
+          b.style.opacity   = '';
         });
+      });
+    });
+  }
+
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── Scroll reveal ── */
+  const revealObs = new IntersectionObserver((entries, obs) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('visible');
+        obs.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* ── Active nav ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const activeObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${en.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => activeObs.observe(s));
+
+  /* ── Typewriter ── */
+  const typedEl = document.getElementById('typed-text');
+  if (typedEl) {
+    const phrases = [
+      'predictive models.',
+      'AI-enabled workflows.',
+      'risk frameworks.',
+      'data pipelines.',
+      'analytical systems.',
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    function tick() {
+      const phrase = phrases[pi];
+      typedEl.textContent = deleting ? phrase.slice(0, --ci) : phrase.slice(0, ++ci);
+      let delay = deleting ? 42 : 78;
+      if (!deleting && ci === phrase.length) { delay = 2400; deleting = true; }
+      else if (deleting && ci === 0)          { deleting = false; pi = (pi + 1) % phrases.length; delay = 420; }
+      setTimeout(tick, delay);
     }
+    setTimeout(tick, 1000);
+  }
 
-    // Close menu on link click
-    document.querySelectorAll(".nav-link").forEach((link) => {
-        link.addEventListener("click", () => {
-            if (navMenu.classList.contains('active')) {
-                navToggle.click(); 
-            }
-        });
+  /* ── Animated counters ── */
+  const counterObs = new IntersectionObserver((entries, obs) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el     = en.target;
+      const target = parseInt(el.dataset.target, 10);
+      const dur    = 1800;
+      const start  = performance.now();
+      (function frame(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(e * target).toLocaleString();
+        if (p < 1) requestAnimationFrame(frame);
+      })(start);
+      obs.unobserve(el);
     });
-
-    // --- Navbar Scroll Effect ---
-    const navbar = document.querySelector(".navbar");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
-    });
-
-    // --- Smooth Scrolling ---
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.scrollY - headerOffset;
-  
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
-
-    // --- Elegant Scroll Reveal Animations ---
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Stop observing once revealed to keep it clean
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-up-element').forEach(el => {
-        revealObserver.observe(el);
-    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
 
 });

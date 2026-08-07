@@ -654,25 +654,12 @@ button { font-family: inherit; }
   opacity: 0; transition: opacity .2s;
 }
 
-/* ─── HERO RIGHT & NOTE ──────────────────────── */
+/* ─── HERO RIGHT ──────────────────────────────── */
 .hero-right {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1.5rem;
 }
-.hero-note {
-  width: 100%; max-width: 380px;
-  background: var(--ink); color: var(--paper);
-  padding: 18px 22px; border-radius: 20px;
-  box-shadow: 0 14px 40px rgba(0,0,0,.13);
-}
-.hero-note strong {
-  display: block; font-family: var(--serif); font-style: italic;
-  font-size: 1.4rem; line-height: 1.08; margin-bottom: 5px;
-  color: var(--cream);
-}
-.hero-note span { font-size: .78rem; color: #cdc8bb; }
 
 /* ─── SECTION SUB (light bg) ─────────────────── */
 .section-sub-light {
@@ -732,6 +719,16 @@ button { font-family: inherit; }
   filter: none !important;
   width: 100% !important; height: 100% !important;
   position: absolute; inset: 0;
+}
+
+/* ─── EXPERIENCE ZIG-ZAG ─────────────────────── */
+.exp-item:nth-child(even) { grid-template-columns: 3fr 2fr; }
+.exp-item:nth-child(even) .exp-img-panel { order: 2; }
+.exp-item:nth-child(even) .exp-content   { order: 1; }
+
+.exp-para {
+  font-size: .875rem; color: #4f4d47; line-height: 1.68;
+  margin-bottom: 1.5rem; flex-grow: 1;
 }
 
 /* ─── CASE LINES ─────────────────────────────── */
@@ -854,7 +851,9 @@ button { font-family: inherit; }
   .story-step:nth-child(2) { border-right: 0; }
   .story-step:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.14); }
   .hero-right { max-width: 320px; margin: 0 auto; }
-  .hero-note { max-width: 100%; }
+  .exp-item:nth-child(even) { grid-template-columns: 1fr; }
+  .exp-item:nth-child(even) .exp-img-panel,
+  .exp-item:nth-child(even) .exp-content { order: 0; }
 }
 @media (max-width: 640px) {
   .story-grid { grid-template-columns: 1fr; }
@@ -863,5 +862,4 @@ button { font-family: inherit; }
   .detail-grid { grid-template-columns: 1fr; }
   .case-lines { grid-template-columns: 70px 1fr; }
   .budget-vis { grid-template-columns: 1fr; }
-  .hero-note { font-size: .92rem; }
 }

@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const typedEl = document.getElementById('typed-text');
   if (typedEl) {
     const phrases = [
+      'financial systems.',
       'predictive models.',
-      'AI-enabled workflows.',
       'risk frameworks.',
-      'data pipelines.',
+      'AI-enabled workflows.',
       'analytical systems.',
     ];
     let pi = 0, ci = 0, deleting = false;

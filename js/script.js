@@ -94,4 +94,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.6 });
   document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
 
+  /* ── Cursor dot ── */
+  const dot = document.getElementById('cursor-dot');
+  if (dot && window.matchMedia('(pointer:fine)').matches) {
+    dot.style.opacity = '.85';
+    window.addEventListener('mousemove', e => {
+      dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+    }, { passive: true });
+  }
+
+  /* ── Expand / collapse case studies ── */
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.target);
+      el.classList.toggle('open');
+      btn.textContent = el.classList.contains('open') ? 'Close case study ↑' : 'Open case study ↓';
+    });
+  });
+
 });

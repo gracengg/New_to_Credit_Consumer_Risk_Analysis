@@ -639,3 +639,229 @@ button { font-family: inherit; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .ticker-track, .profile-ring { animation: none; }
 }
+
+/* ═══════════════════════════════════════════════
+   COMBINED ADDITIONS — preview.html + redesign
+   ═══════════════════════════════════════════════ */
+
+/* ─── CURSOR DOT ─────────────────────────────── */
+.cursor-dot {
+  position: fixed; left: 0; top: 0;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--acid); pointer-events: none;
+  z-index: 9999; mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity .2s;
+}
+
+/* ─── HERO RIGHT & NOTE ──────────────────────── */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.hero-note {
+  width: 100%; max-width: 380px;
+  background: var(--ink); color: var(--paper);
+  padding: 18px 22px; border-radius: 20px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.13);
+}
+.hero-note strong {
+  display: block; font-family: var(--serif); font-style: italic;
+  font-size: 1.4rem; line-height: 1.08; margin-bottom: 5px;
+  color: var(--cream);
+}
+.hero-note span { font-size: .78rem; color: #cdc8bb; }
+
+/* ─── SECTION SUB (light bg) ─────────────────── */
+.section-sub-light {
+  font-size: 1rem; color: rgba(244,240,230,.52);
+  max-width: 640px; margin-top: .6rem; line-height: 1.7;
+}
+
+/* ─── DEAN BADGES ────────────────────────────── */
+.dean-badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.dean-badge {
+  font-size: .67rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--ink); background: var(--acid);
+  border-radius: 6px; padding: .28rem .78rem;
+}
+
+/* ─── LEADERSHIP LIST (bullet override) ──────── */
+.leadership-list li {
+  display: block;
+  padding-left: 1.3rem;
+  position: relative;
+}
+.leadership-list li::before {
+  content: '\2014';
+  position: absolute; left: 0;
+  color: var(--acid); font-size: .78rem; opacity: .8;
+}
+.leadership-list li i { display: none; }
+
+/* ─── STORY STRIP ────────────────────────────── */
+.story-strip { background: var(--ink); padding: 36px 0; }
+.story-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 26px; overflow: hidden;
+}
+.story-step {
+  padding: 24px 22px;
+  border-right: 1px solid rgba(255,255,255,.14);
+}
+.story-step:last-child { border-right: 0; }
+.story-step small {
+  display: block; color: var(--acid); font-weight: 900;
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.story-step h3 {
+  font-family: var(--serif); font-size: 1.5rem; line-height: 1;
+  margin: 0 0 8px; color: var(--cream);
+}
+.story-step p { margin: 0; color: #c6c1b6; font-size: .87rem; line-height: 1.55; }
+
+/* ─── 1MATRIX LOGO PANEL ─────────────────────── */
+.logo-panel { background: #0a0a07; }
+.logo-panel img {
+  object-fit: contain !important;
+  padding: 2.8rem !important;
+  filter: none !important;
+  width: 100% !important; height: 100% !important;
+  position: absolute; inset: 0;
+}
+
+/* ─── CASE LINES ─────────────────────────────── */
+.case-lines {
+  display: grid; grid-template-columns: 90px 1fr;
+  gap: 7px 16px; margin: .9rem 0 1.1rem;
+}
+.case-lines dt {
+  color: #928f86; text-transform: uppercase;
+  letter-spacing: .08em; font-weight: 800; font-size: .68rem;
+  padding-top: .12rem;
+}
+.case-lines dd { margin: 0; color: rgba(244,240,230,.7); font-size: .85rem; line-height: 1.52; }
+
+/* ─── EXPAND BUTTON ──────────────────────────── */
+.expand-btn {
+  display: inline-flex; align-items: center; gap: .38rem;
+  margin-top: 1rem; border: 0; background: transparent;
+  color: var(--acid); padding: 0;
+  font: 800 .75rem / 1 var(--sans);
+  text-transform: uppercase; letter-spacing: .09em;
+  cursor: pointer;
+  transition: opacity .2s, gap .3s var(--ease);
+}
+.expand-btn:hover { opacity: .68; gap: .6rem; }
+
+/* ─── CASE DETAIL ────────────────────────────── */
+.case-detail {
+  display: none; margin-top: 1.2rem; padding-top: 1.2rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.case-detail.open { display: block; }
+.detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.detail-box {
+  background: #1c1c17; border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 16px;
+}
+.detail-box strong {
+  display: block; color: var(--cream); margin-bottom: 6px;
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+}
+.detail-box p { margin: 0; color: #c0b9aa; font-size: .81rem; line-height: 1.56; }
+
+/* ─── BUDGET VISUAL ──────────────────────────── */
+.budget-vis {
+  display: grid; grid-template-columns: 1.1fr .9fr;
+  gap: 10px; padding: 18px;
+}
+.budget-sheet, .budget-dash {
+  border-radius: 14px; background: #2a2a25;
+  border: 1px solid rgba(255,255,255,.09);
+  position: relative; overflow: hidden; min-height: 120px;
+}
+.budget-sheet::before {
+  content: ''; position: absolute; inset: 16px;
+  background:
+    repeating-linear-gradient(to bottom, rgba(255,255,255,.12) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(to right, rgba(255,255,255,.09) 0 1px, transparent 1px 48px);
+}
+.budget-dash::before {
+  content: ''; position: absolute;
+  left: 16px; right: 16px; bottom: 16px; height: 90px;
+  background:
+    linear-gradient(to top, var(--wine) 0 44%, transparent 44%),
+    linear-gradient(to top, var(--acid) 0 70%, transparent 70%),
+    linear-gradient(to top, #2e4258 0 56%, transparent 56%);
+  background-size: 26% 100%, 26% 100%, 26% 100%;
+  background-position: 0 0, 38% 0, 74% 0;
+  background-repeat: no-repeat;
+}
+
+/* ─── BI VISUAL ──────────────────────────────── */
+.bi-vis {
+  padding: 18px; display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 65px 1fr; gap: 9px;
+}
+.bi-wide, .bi-chart, .bi-block { border-radius: 11px; background: #2a2a25; }
+.bi-wide {
+  grid-column: 1 / 4;
+  background: linear-gradient(90deg, #283b4d, #47192a);
+}
+.bi-chart { position: relative; }
+.bi-chart::before {
+  content: ''; position: absolute;
+  left: 9px; right: 9px; bottom: 9px; height: 62%;
+  background: linear-gradient(to top, var(--acid) 0 58%, transparent 58%);
+  clip-path: polygon(0 100%, 0 72%, 20% 58%, 38% 76%, 56% 34%, 73% 52%, 100% 14%, 100% 100%);
+}
+
+/* ─── MARKET VISUAL ──────────────────────────── */
+.market-vis {
+  padding: 22px; position: relative; overflow: hidden;
+}
+.market-vis::before {
+  content: ''; position: absolute; inset: 54px 20px 26px;
+  background: repeating-linear-gradient(to bottom, transparent 0 32px, rgba(255,255,255,.08) 33px 34px);
+}
+.market-vis::after {
+  content: ''; position: absolute;
+  left: 22px; right: 22px; top: 50%; height: 3px;
+  background: var(--acid); transform: skewY(-5deg);
+  box-shadow: 0 44px 0 -1px var(--wine), 0 -40px 0 -1px #2e4258;
+}
+.market-label {
+  position: relative; z-index: 2;
+  font-size: .68rem; text-transform: uppercase;
+  letter-spacing: .11em; color: #aaa79f; font-weight: 800;
+}
+
+/* ─── CONTACT SUB TEXT ───────────────────────── */
+.contact-sub {
+  font-size: .95rem; color: #585449; margin-top: 1rem;
+  max-width: 500px; line-height: 1.72;
+}
+
+/* ─── STORY STRIP RESPONSIVE ─────────────────── */
+@media (max-width: 900px) {
+  .story-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-step:nth-child(2) { border-right: 0; }
+  .story-step:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.14); }
+  .hero-right { max-width: 320px; margin: 0 auto; }
+  .hero-note { max-width: 100%; }
+}
+@media (max-width: 640px) {
+  .story-grid { grid-template-columns: 1fr; }
+  .story-step { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+  .story-step:last-child { border-bottom: 0; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .case-lines { grid-template-columns: 70px 1fr; }
+  .budget-vis { grid-template-columns: 1fr; }
+  .hero-note { font-size: .92rem; }
+}

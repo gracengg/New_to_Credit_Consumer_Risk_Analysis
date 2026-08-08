@@ -53,47 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.35 });
   sections.forEach(s => activeObs.observe(s));
 
-  /* ── Typewriter ── */
-  const typedEl = document.getElementById('typed-text');
-  if (typedEl) {
-    const phrases = [
-      'financial systems.',
-      'predictive models.',
-      'risk frameworks.',
-      'AI-enabled workflows.',
-      'analytical systems.',
-    ];
-    let pi = 0, ci = 0, deleting = false;
-    function tick() {
-      const phrase = phrases[pi];
-      typedEl.textContent = deleting ? phrase.slice(0, --ci) : phrase.slice(0, ++ci);
-      let delay = deleting ? 42 : 78;
-      if (!deleting && ci === phrase.length) { delay = 2400; deleting = true; }
-      else if (deleting && ci === 0)          { deleting = false; pi = (pi + 1) % phrases.length; delay = 420; }
-      setTimeout(tick, delay);
-    }
-    setTimeout(tick, 1000);
-  }
-
-  /* ── Animated counters ── */
-  const counterObs = new IntersectionObserver((entries, obs) => {
-    entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      const el     = en.target;
-      const target = parseInt(el.dataset.target, 10);
-      const dur    = 1800;
-      const start  = performance.now();
-      (function frame(now) {
-        const p = Math.min((now - start) / dur, 1);
-        const e = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(e * target).toLocaleString();
-        if (p < 1) requestAnimationFrame(frame);
-      })(start);
-      obs.unobserve(el);
-    });
-  }, { threshold: 0.6 });
-  document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
-
   /* ── Cursor dot ── */
   const dot = document.getElementById('cursor-dot');
   if (dot && window.matchMedia('(pointer:fine)').matches) {
@@ -111,5 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = el.classList.contains('open') ? 'Close case study ↑' : 'Open case study ↓';
     });
   });
+
+  /* ── Contact form → mailto ── */
+  const cf = document.getElementById('contact-form');
+  if (cf) {
+    cf.addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = (document.getElementById('cf-name').value  || '').trim();
+      const email = (document.getElementById('cf-email').value || '').trim();
+      const msg   = (document.getElementById('cf-msg').value   || '').trim();
+      if (!msg) return;
+      const subject = encodeURIComponent('Portfolio message' + (name ? ' from ' + name : ''));
+      const body    = encodeURIComponent(msg + (email ? '\n\nReply to: ' + email : ''));
+      window.location.href = `mailto:gracengggggg@gmail.com?subject=${subject}&body=${body}`;
+    });
+  }
 
 });

@@ -582,14 +582,15 @@ button { font-family: inherit; }
 .contact-section { background: var(--paper); padding-bottom: 80px; }
 .contact-box {
   background: var(--acid); border-radius: 36px; padding: 4.5rem 4rem;
-  display: grid; grid-template-columns: 1.3fr .7fr; gap: 3rem; align-items: end;
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 3.5rem; align-items: start;
 }
 .contact-title {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  line-height: .92; letter-spacing: -.055em; color: var(--ink); margin-top: .6rem;
+  font-size: clamp(1.85rem, 3.5vw, 3.2rem);
+  line-height: 1.05; letter-spacing: -.04em; color: var(--ink); margin-top: .6rem;
 }
-.contact-right { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+.contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; margin-top: 2rem; }
+.contact-right { display: flex; flex-direction: column; }
 
 /* ─── FOOTER ─────────────────────────────────── */
 .site-footer { border-top: 1px solid var(--line); padding: 1.6rem 0; background: var(--paper); }
@@ -712,13 +713,16 @@ button { font-family: inherit; }
 .story-step p { margin: 0; color: #c6c1b6; font-size: .87rem; line-height: 1.55; }
 
 /* ─── 1MATRIX LOGO PANEL ─────────────────────── */
-.logo-panel { background: #0a0a07; }
+.logo-panel { background: #f8f8f4; }
 .logo-panel img {
   object-fit: contain !important;
   padding: 2.8rem !important;
   filter: none !important;
   width: 100% !important; height: 100% !important;
   position: absolute; inset: 0;
+}
+.logo-panel .exp-img-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,.35) 0%, transparent 55%);
 }
 
 /* ─── EXPERIENCE ZIG-ZAG ─────────────────────── */
@@ -845,6 +849,45 @@ button { font-family: inherit; }
   max-width: 500px; line-height: 1.72;
 }
 
+/* ─── PROJECT QUESTION QUOTE ─────────────────── */
+.proj-q {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(244,240,230,.72);
+  line-height: 1.55;
+  margin-bottom: 1.1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--acid);
+}
+
+/* ─── 2-COLUMN DETAIL GRID ───────────────────── */
+.detail-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* ─── CONTACT FORM ───────────────────────────── */
+.contact-form {
+  display: flex; flex-direction: column; gap: .55rem;
+  width: 100%;
+}
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: rgba(23,23,19,.07);
+  border: 1.5px solid rgba(23,23,19,.18);
+  border-radius: 12px;
+  padding: .72rem 1rem;
+  font-family: var(--sans); font-size: .855rem;
+  color: var(--ink); outline: none;
+  transition: border-color .25s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: rgba(23,23,19,.4); }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: rgba(23,23,19,.38); }
+.contact-form textarea { resize: vertical; min-height: 100px; }
+.contact-form .btn { align-self: flex-start; margin-top: .3rem; }
+
 /* ─── STORY STRIP RESPONSIVE ─────────────────── */
 @media (max-width: 900px) {
   .story-grid { grid-template-columns: repeat(2, 1fr); }
@@ -860,6 +903,9 @@ button { font-family: inherit; }
   .story-step { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); }
   .story-step:last-child { border-bottom: 0; }
   .detail-grid { grid-template-columns: 1fr; }
+  .detail-grid-2 { grid-template-columns: 1fr; }
   .case-lines { grid-template-columns: 70px 1fr; }
   .budget-vis { grid-template-columns: 1fr; }
+  .cf-row { grid-template-columns: 1fr; }
+  .contact-box { padding: 2.5rem 1.8rem; }
 }

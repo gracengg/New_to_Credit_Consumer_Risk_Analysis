@@ -199,7 +199,7 @@ button { font-family: inherit; }
   line-height: .87;
   letter-spacing: -.07em;
   color: var(--ink);
-  margin: .55rem 0 1.1rem;
+  margin: .55rem 0 2.2rem;
 }
 .hero-typing-line {
   font-family: var(--serif);
@@ -337,12 +337,12 @@ button { font-family: inherit; }
   display: grid;
   grid-template-columns: 5fr 7fr;
   gap: 4rem;
-  align-items: start;
+  align-items: stretch;
 }
-.edu-img-col { overflow: hidden; border-radius: 18px; }
+.edu-img-col { overflow: hidden; border-radius: 18px; min-height: 340px; }
 .edu-img {
   width: 100%;
-  aspect-ratio: 4/5;
+  height: 100%;
   object-fit: cover;
   filter: grayscale(20%) contrast(1.05);
   transition: filter .7s, transform .7s var(--ease);
@@ -582,7 +582,7 @@ button { font-family: inherit; }
 .contact-section { background: var(--paper); padding-bottom: 80px; }
 .contact-box {
   background: var(--acid); border-radius: 36px; padding: 4.5rem 4rem;
-  display: grid; grid-template-columns: 1.1fr .9fr; gap: 3.5rem; align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: stretch;
 }
 .contact-title {
   font-family: var(--serif);
@@ -590,7 +590,7 @@ button { font-family: inherit; }
   line-height: 1.05; letter-spacing: -.04em; color: var(--ink); margin-top: .6rem;
 }
 .contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; margin-top: 2rem; }
-.contact-right { display: flex; flex-direction: column; }
+.contact-right { display: flex; flex-direction: column; justify-content: center; }
 
 /* ─── FOOTER ─────────────────────────────────── */
 .site-footer { border-top: 1px solid var(--line); padding: 1.6rem 0; background: var(--paper); }
@@ -606,8 +606,9 @@ button { font-family: inherit; }
   .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
   .hero-right { order: -1; max-width: 280px; }
   .hero-name  { font-size: clamp(4rem, 13vw, 7rem); }
-  .edu-grid   { grid-template-columns: 1fr; gap: 2.5rem; }
-  .edu-img    { aspect-ratio: 16/9; }
+  .edu-grid   { grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
+  .edu-img-col { height: auto; min-height: 0; }
+  .edu-img    { height: auto; aspect-ratio: 16/9; }
   .exp-item   { grid-template-columns: 1fr; }
   .exp-img-panel { min-height: 240px; }
   .research-grid { grid-template-columns: 1fr; }
@@ -716,7 +717,7 @@ button { font-family: inherit; }
 .logo-panel { background: #f8f8f4; }
 .logo-panel img {
   object-fit: contain !important;
-  padding: 2.8rem !important;
+  padding: .85rem !important;
   filter: none !important;
   width: 100% !important; height: 100% !important;
   position: absolute; inset: 0;
@@ -848,6 +849,9 @@ button { font-family: inherit; }
   font-size: .95rem; color: #585449; margin-top: 1rem;
   max-width: 500px; line-height: 1.72;
 }
+
+/* ─── EDUCATION SECTION TIGHT BOTTOM ────────── */
+#education { padding-bottom: 60px; }
 
 /* ─── PROJECT QUESTION QUOTE ─────────────────── */
 .proj-q {

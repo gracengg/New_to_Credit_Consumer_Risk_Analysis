@@ -9,6 +9,7 @@ This repository is the working preview. The main portfolio has a separate reposi
 ## Structure
 
 - `index.html`: introduction, experience, selected work, research and contact.
+- `projects/new-to-credit-risk/`: self-contained credit-risk code, notebook, tests and documentation.
 - `case-studies/`: project briefs and the three-stage NSDUH dashboard gallery.
 - `css/style.css`: shared tokens, components and responsive layouts.
 - `css/case-study.css`: case-study page layout only.
@@ -23,6 +24,7 @@ This repository is the working preview. The main portfolio has a separate reposi
 | --- | --- | --- |
 | 1Matrix | Experience summary and control-framework description | Design and implementation recommendations; no deployed-system or savings claim |
 | Dickinson / CCLA | Experience summary and prototype scope brief | Supplied CCLA source is intermediate; individual records are not published |
+| New-to-credit | Reviewed code, demonstration notebook and historical evidence audit | Original-data rerun pending; no validated deployment claim |
 | NSDUH | Three original report screenshots and a methodology note | Coursework; descriptive and exploratory, not a validated clinical model |
 | Campus energy | Edited brief based on the April 20, 2025 fellowship report | Proposal; no adoption or realized savings claim |
 | Credit and hiring ethics | Original course essay PDF | Philosophical argument, not legal guidance or empirical hiring research |

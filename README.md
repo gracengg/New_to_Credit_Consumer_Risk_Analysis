@@ -14,7 +14,7 @@ This repository contains the current portfolio. The root homepage at https://gra
 - `css/style.css`: shared tokens, components and responsive layouts.
 - `css/case-study.css`: case-study page layout only.
 - `js/script.js`: optional navigation, section tracking, reveal, image fallback and email-draft enhancements.
-- `images/projects/`: original coursework dashboard exports.
+- `images/projects/`: original dashboard exports.
 - `publications/`: public academic PDF attachments.
 - `scripts/check_site.py`: offline checks for HTML structure, labels, local assets and anchors.
 
@@ -27,13 +27,14 @@ This repository contains the current portfolio. The root homepage at https://gra
 | New-to-credit | Reviewed code, demonstration notebook and historical evidence audit | Original-data rerun pending; no validated deployment claim |
 | NSDUH | Three original report screenshots and a methodology note | Coursework; descriptive and exploratory, not a validated clinical model |
 | Apple equity risk | Public Python package, six supplied snapshots, executed notebook, tests and rebuilt risk tables | Complete-period historical analysis; no trading or causal claim |
+| IMDb catalogue | Reviewed SQL package, local importer, executed notebooks and sixteen tests | Original database absent; public outputs use fictional verification records |
 | Retail revenue | Public SQL queries, loader, reconciled growth bridge and identity audit | Teaching data; no retention or commercial uplift claim |
 | Campus energy | Edited brief based on the April 20, 2025 fellowship report | Proposal; no adoption or realized savings claim |
 | Credit and hiring ethics | Original course essay PDF | Philosophical argument, not legal guidance or empirical hiring research |
 | Beauty and wages | Research summary | Supporting paper not supplied; no misleading download link |
 | Helping behavior | Original course paper PDF | Hypothetical-scenario experiment and statistical analysis |
 
-The CCLA workbook and supplied PBIX files are not public downloads. PBIX models may embed records; institutional source files must not be copied into this public repository. Do not present the NSDUH coursework exports as independently validated population estimates.
+The CCLA workbook and supplied PBIX files are not public downloads. PBIX models may embed records; institutional source files must not be copied into this public repository. Do not present the NSDUH report exports as independently validated population estimates.
 
 ## Checks
 

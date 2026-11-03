@@ -1,11 +1,9 @@
-# Local preview and validation output
-.openai/
-.qa-preview/
 __pycache__/
 *.pyc
-.DS_Store
-
-# Institutional source records and embedded report models are not public assets.
-private-source/
-*.pbix
-*.xlsx
+*.egg-info/
+.venv/
+.ipynb_checkpoints/
+outputs/
+data/*.csv
+data/*.parquet
+*.joblib

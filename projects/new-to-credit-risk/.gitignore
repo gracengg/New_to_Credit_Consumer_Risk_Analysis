@@ -1,9 +1,0 @@
-__pycache__/
-*.pyc
-*.egg-info/
-.venv/
-.ipynb_checkpoints/
-outputs/
-data/*.csv
-data/*.parquet
-*.joblib

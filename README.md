@@ -50,7 +50,7 @@ See [the methodological review](docs/methodology_review.md) for details and inte
 These are **saved outputs from the original notebook**, not a rerun of the corrected implementation. The original feature and preprocessing issues prevent these figures from serving as validated performance claims.
 
 | Model | Split | Classification rule | TN / FP / FN / TP | Precision | Recall | Reported ROC AUC |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | Random Forest | Validation | 0.70 | 212 / 9 / 12 / 18 | 66.7% | 60.0% | 0.953 |
 | Random Forest | Test | Estimator default, approximately 0.50 | 190 / 29 / 0 / 33 | 53.2% | 100.0% | 0.943 |
 | XGBoost | Validation | 0.70 | 206 / 15 / 12 / 18 | 54.5% | 60.0% | 0.944 |

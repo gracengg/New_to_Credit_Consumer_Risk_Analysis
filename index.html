@@ -15,14 +15,14 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Georgia&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- NAV -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
     <div class="nav-inner">
       <a class="nav-brand" href="#home">Grace Ngo</a>
       <div class="nav-menu" id="nav-menu">
@@ -32,7 +32,7 @@
         <a href="#research" class="nav-link">Research</a>
         <a href="#contact" class="nav-link">Connect</a>
       </div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation" aria-controls="nav-menu" aria-expanded="false">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
@@ -40,13 +40,14 @@
     </div>
   </nav>
 
+  <main id="main-content">
   <!-- HERO -->
   <section id="home" class="hero">
     <div class="hero-inner">
       <div class="hero-left reveal">
         <p class="eyebrow">Quantitative Economics &middot; Data Analytics &middot; AI Consulting</p>
         <h1 class="hero-name">Grace<br>Ngo</h1>
-        <p class="hero-desc">Working across financial systems, business intelligence, risk modeling, consulting and applied research &mdash; structuring complex problems and building analytical tools that support better decisions.</p>
+        <p class="hero-desc">I combine economics, business analytics and process design to make financial and operational decisions clearer. My work spans budget controls, management reporting and applied research. Dickinson College &middot; graduating May 2027.</p>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-dark">Work &rarr;</a>
           <a href="https://www.linkedin.com/in/gracee-ngo/" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn &rarr;</a>
@@ -54,7 +55,7 @@
       </div>
       <div class="hero-right reveal" style="transition-delay:.18s">
         <div class="profile-ring">
-          <img src="images/Profile.jpeg" alt="Grace Ngo" onerror="this.src='images/placeholder.svg'" />
+          <img src="images/Profile.jpeg" alt="Grace Ngo" data-fallback="images/placeholder.svg" />
         </div>
       </div>
     </div>
@@ -77,7 +78,7 @@
       </div>
       <div class="edu-grid">
         <div class="edu-img-col reveal">
-          <img src="images/Dickinson.jpg" alt="Dickinson College campus" class="edu-img" onerror="this.src='images/placeholder.svg'" />
+          <img src="images/Dickinson.jpg" alt="Dickinson College campus" class="edu-img" data-fallback="images/placeholder.svg" />
         </div>
         <div class="edu-content reveal" style="transition-delay:.15s">
           <p class="eyebrow acid-text">Dickinson College &middot; Carlisle, PA</p>
@@ -143,7 +144,7 @@
         <!-- 1Matrix -->
         <article class="exp-item reveal" aria-labelledby="experience-1matrix-company experience-1matrix-role">
           <div class="exp-img-panel logo-panel">
-            <img src="images/1matrix.png" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='images/placeholder.svg'" />
+            <img src="images/1matrix.png" alt="" loading="lazy" decoding="async" data-fallback="images/placeholder.svg" />
             <div class="exp-img-overlay" aria-hidden="true">
               <span class="exp-co-name">1Matrix</span>
             </div>
@@ -167,7 +168,7 @@
         <!-- Dickinson College -->
         <article class="exp-item reveal" aria-labelledby="experience-dickinson-company experience-dickinson-role">
           <div class="exp-img-panel">
-            <img src="images/east-college.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='images/placeholder.svg'" />
+            <img src="images/east-college.jpg" alt="" loading="lazy" decoding="async" data-fallback="images/placeholder.svg" />
             <div class="exp-img-overlay" aria-hidden="true">
               <span class="exp-co-name">Dickinson</span>
             </div>
@@ -191,7 +192,7 @@
         <!-- KPMG -->
         <article class="exp-item reveal" aria-labelledby="experience-kpmg-company experience-kpmg-role">
           <div class="exp-img-panel">
-            <img src="images/KPMG.jpeg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='images/placeholder.svg'" />
+            <img src="images/KPMG.jpeg" alt="" loading="lazy" decoding="async" data-fallback="images/placeholder.svg" />
             <div class="exp-img-overlay" aria-hidden="true">
               <span class="exp-co-name">KPMG</span>
             </div>
@@ -215,7 +216,7 @@
         <!-- EY-Parthenon -->
         <article class="exp-item reveal" aria-labelledby="experience-ey-company experience-ey-role">
           <div class="exp-img-panel">
-            <img src="images/EY-Parthenon.png" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='images/placeholder.svg'" />
+            <img src="images/EY-Parthenon.png" alt="" loading="lazy" decoding="async" data-fallback="images/placeholder.svg" />
             <div class="exp-img-overlay" aria-hidden="true">
               <span class="exp-co-name">EY&#8209;Parthenon</span>
             </div>
@@ -241,222 +242,103 @@
   </section>
 
   <!-- SELECTED WORK -->
-  <section id="projects" class="section section-dark">
+  <section id="projects" class="section section-dark" aria-labelledby="projects-heading">
     <div class="wrap">
       <div class="section-head">
         <span class="section-label acid">03 / Selected Work</span>
-        <h2 class="section-title light">Cases &amp; Analysis</h2>
-        <p class="section-sub-light">Each case documents the problem, the analytical structure and the decision it was designed to support.</p>
+        <h2 class="section-title light" id="projects-heading">Cases &amp; Analysis</h2>
+        <p class="section-sub-light">Business problems, analytical choices and the work behind each recommendation.</p>
       </div>
 
-      <!-- Project 01 — 1Matrix Finance System -->
-      <article class="project-row reveal">
-        <div class="proj-num acid-text">01</div>
+      <article class="project-row reveal" aria-labelledby="finance-title">
+        <span class="proj-num acid-text" aria-hidden="true">01</span>
         <div class="proj-main">
-          <h3 class="proj-title">Finance &amp; Budget Management System &mdash; 1Matrix</h3>
-          <p class="proj-q">&ldquo;Finance needed to know not only what had already been spent, but what had already been committed and what remained safe to spend before approving the next request.&rdquo;</p>
+          <p class="project-status">Internship project &middot; framework and implementation recommendations</p>
+          <h3 class="proj-title" id="finance-title">Finance &amp; Budget Management &mdash; 1Matrix</h3>
+          <p class="proj-q">How much budget remains available when purchase commitments and payments happen at different times?</p>
           <dl class="case-lines">
-            <dt>Scale</dt><dd>100 budget lines &middot; 6 business units &middot; 13-step workflow</dd>
-            <dt>Architecture</dt><dd>Plan &rarr; Commitment &rarr; Actual model across the PR &rarr; PO &rarr; GR &rarr; Payment lifecycle</dd>
-            <dt>Prototype</dt><dd>Excel-based financial structure &middot; budget controls &middot; management dashboard mockups</dd>
-            <dt>Output</dt><dd>Dashboard views, approval logic, role permissions and Odoo implementation requirements</dd>
+            <dt>Scope</dt><dd>89 budget lines across six business units; a 13-stage procure-to-pay workflow.</dd>
+            <dt>Approach</dt><dd>A Plan&ndash;Commitment&ndash;Actual Spend framework for budget monitoring, exceptions and rebalancing.</dd>
+            <dt>Contribution</dt><dd>Translated stakeholder requirements and operating rules into workflow, monitoring and implementation recommendations.</dd>
           </dl>
-          <div class="proj-tags">
-            <span class="ptag">Financial Systems</span>
-            <span class="ptag">Budget Architecture</span>
-            <span class="ptag">Process Design</span>
-            <span class="ptag">Dashboard Prototyping</span>
-            <span class="ptag">Odoo</span>
-          </div>
-          <button class="expand-btn" data-target="detail-finance">Open case study &darr;</button>
-          <div class="case-detail" id="detail-finance">
+          <div class="proj-tags"><span class="ptag">Budget Controls</span><span class="ptag">Process Design</span><span class="ptag">Business Intelligence</span></div>
+          <details class="case-disclosure">
+            <summary>Explore the control framework</summary>
             <div class="detail-grid detail-grid-2">
-              <div class="detail-box">
-                <strong>Problem</strong>
-                <p>Fragmented PRs, POs, GRs and payment timing made it impossible to distinguish planned spend, committed exposure and actual cash movement. Finance could not reliably answer: what is genuinely available to spend right now?</p>
-              </div>
-              <div class="detail-box">
-                <strong>Control Logic</strong>
-                <p>Plan &minus; outstanding commitments &minus; actual spend = genuinely available budget. Financial exposure transfers between stages rather than being counted repeatedly. One PR can split into multiple POs; one PO into multiple GRs.</p>
-              </div>
-              <div class="detail-box">
-                <strong>Management Views</strong>
-                <p>Budget health &middot; monthly utilization &middot; PR/PO/GR drilldowns &middot; approval queues &middot; budget transfers &middot; quarter-end review &middot; period controls &middot; role permissions.</p>
-              </div>
-              <div class="detail-box">
-                <strong>AI Roadmap</strong>
-                <p>Duplicate PR detection &middot; burn-rate monitoring &middot; anomaly detection &middot; approval summarization &middot; contract extraction &middot; PO-to-contract validation &middot; GR document reconciliation &middot; cash-flow forecasting. Final approvals and payments remain human-controlled.</p>
-              </div>
+              <div class="detail-box"><h4>Separate the stages</h4><p>Track planned budgets, outstanding commitments and recorded spending separately, so an expenditure is not counted repeatedly as it moves through the procurement process.</p></div>
+              <div class="detail-box"><h4>Make exceptions explicit</h4><p>Define approval, exception and rebalancing rules alongside the calculation, rather than treating a dashboard total as the whole decision.</p></div>
+              <div class="detail-box"><h4>Assess AI applications</h4><p>Evaluated 10 AI-assisted applications and their potential contribution to workflow redesign and performance monitoring.</p></div>
+              <div class="detail-box"><h4>Define the deliverable</h4><p>The portfolio describes framework design and implementation recommendations. It does not claim a deployed enterprise system or measured savings.</p></div>
             </div>
-          </div>
+          </details>
         </div>
-        <div class="proj-visual budget-vis" aria-hidden="true">
-          <div class="budget-sheet"></div>
-          <div class="budget-dash"></div>
-        </div>
+        <aside class="project-aside" aria-label="Framework stages"><span>Plan</span><span>Commitment</span><span>Actual spend</span><p>Separate financial states.<br>One budget decision.</p></aside>
       </article>
 
-      <!-- Project 02 — Credit Risk -->
-      <article class="project-row reveal">
-        <div class="proj-num acid-text">02</div>
+      <article class="project-row reveal" aria-labelledby="institutional-title">
+        <span class="proj-num acid-text" aria-hidden="true">02</span>
         <div class="proj-main">
-          <h3 class="proj-title">New-to-Credit Consumer Risk Underwriting Model</h3>
-          <p class="proj-q">&ldquo;How can a lender assess charge-off risk when conventional credit history is limited or absent?&rdquo;</p>
+          <p class="project-status">Institutional analytics &middot; CCLA working prototype</p>
+          <h3 class="proj-title" id="institutional-title">Institutional Reporting &amp; Alumni Engagement</h3>
+          <p class="proj-q">How can institutional records support a clearer view of engagement and student outcomes?</p>
           <dl class="case-lines">
-            <dt>Data</dt><dd>2,000 borrowers &middot; 27 variables &middot; 14.15% baseline charge-off rate &middot; 41.5% without FICO</dd>
-            <dt>Models</dt><dd>Random Forest and XGBoost</dd>
-            <dt>Threshold</dt><dd>70% classification &mdash; reduce false rejection of viable borrowers while preserving underwriting discipline</dd>
-            <dt>Result</dt><dd>Random Forest AUC-ROC 0.953 &middot; Recent delinquency and checking-asset signals ranked above FICO</dd>
+            <dt>Experience</dt><dd>SQL and Excel validation of 15,000+ records, Power BI reporting and peer benchmarking at Dickinson College.</dd>
+            <dt>CCLA scope</dt><dd>A working alumni-engagement prototype connecting participation, academic outcomes, access and geography.</dd>
+            <dt>Evidence</dt><dd>A project brief describing the analytical structure. The supplied CCLA file is an intermediate version, not the final dashboard.</dd>
           </dl>
-          <div class="proj-tags">
-            <span class="ptag">Predictive Modeling</span>
-            <span class="ptag">Risk Decisioning</span>
-            <span class="ptag">Threshold Optimization</span>
-            <span class="ptag">Machine Learning</span>
-          </div>
-          <button class="expand-btn" data-target="detail-risk">Open case study &darr;</button>
-          <div class="case-detail" id="detail-risk">
-            <div class="detail-grid">
-              <div class="detail-box">
-                <strong>Data Constraint</strong>
-                <p>41.5% of borrowers had no FICO score. Missingness was a defining characteristic of the target population, not a routine data-quality issue.</p>
-              </div>
-              <div class="detail-box">
-                <strong>Model Selection</strong>
-                <p>Random Forest preferred over XGBoost for producing fewer false-positive rejections during validation, better preserving portfolio access for creditworthy thin-file borrowers.</p>
-              </div>
-              <div class="detail-box">
-                <strong>Business Insight</strong>
-                <p>Recent repayment behavior and liquidity signals carried more useful underwriting information than traditional FICO scoring for thin-file borrowers, reframing how credit decisions could be made for this segment.</p>
-              </div>
-            </div>
-          </div>
-          <a href="https://github.com/gracengg" class="proj-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+          <div class="proj-tags"><span class="ptag">Power BI</span><span class="ptag">Data Reconciliation</span><span class="ptag">Institutional Research</span></div>
+          <a class="proj-link" href="case-studies/institutional-analytics.html">Read the prototype brief <span aria-hidden="true">&rarr;</span></a>
         </div>
-        <div class="proj-visual" aria-hidden="true">
-          <div class="chart-bars">
-            <span style="--h:45%"></span>
-            <span style="--h:62%"></span>
-            <span style="--h:55%"></span>
-            <span style="--h:78%"></span>
-            <span style="--h:70%"></span>
-            <span style="--h:95%"></span>
-          </div>
-          <p class="chart-label">AUC &nbsp;0.953</p>
-        </div>
+        <aside class="project-aside" aria-label="Reporting workflow"><span>Reconcile</span><span>Model</span><span>Communicate</span><p>Records become useful<br>through clear definitions.</p></aside>
       </article>
 
-      <!-- Project 03 — Dickinson Power BI -->
-      <article class="project-row reveal">
-        <div class="proj-num acid-text">03</div>
+      <article class="project-row project-row-evidence reveal" aria-labelledby="nsduh-title">
+        <span class="proj-num acid-text" aria-hidden="true">03</span>
         <div class="proj-main">
-          <h3 class="proj-title">Institutional Analytics &amp; Power BI &mdash; Dickinson College</h3>
-          <p class="proj-q">&ldquo;How do fragmented institutional records become useful leadership reporting?&rdquo;</p>
-          <dl class="case-lines">
-            <dt>Foundation</dt><dd>15,000+ records &middot; 10+ years of institutional data</dd>
-            <dt>Reporting</dt><dd>10 interactive Power BI dashboards &middot; academic, financial, alumni and departmental metrics</dd>
-            <dt>Benchmarking</dt><dd>30+ peer institutions &middot; CCLA Alumni Dashboard</dd>
-            <dt>Outcomes</dt><dd>25% increase in alumni survey response &middot; $50,000+ in fundraising initiatives supported</dd>
-          </dl>
-          <div class="proj-tags">
-            <span class="ptag">Power BI</span>
-            <span class="ptag">SQL</span>
-            <span class="ptag">Institutional Reporting</span>
-            <span class="ptag">Data Quality</span>
-            <span class="ptag">Qualtrics</span>
-          </div>
+          <p class="project-status">Coursework &middot; three-page Power BI dashboard</p>
+          <h3 class="proj-title" id="nsduh-title">Distress Across Life Stages &mdash; NSDUH</h3>
+          <p class="proj-q">How can a dashboard explain a complex survey through a clear sequence of comparisons?</p>
+          <p class="proj-desc">Designed a three-stage analytical narrative: compare distress across age groups, examine accumulated indicators, and explore a high-burden threshold. The supplied Power BI report includes trend charts, population distributions and an indicator heatmap.</p>
+          <div class="proj-tags"><span class="ptag">Power BI</span><span class="ptag">Survey Analysis</span><span class="ptag">Data Storytelling</span></div>
+          <a class="proj-link" href="case-studies/nsduh-dashboard.html">Explore the dashboard <span aria-hidden="true">&rarr;</span></a>
         </div>
-        <div class="proj-visual bi-vis" aria-hidden="true">
-          <div class="bi-wide"></div>
-          <div class="bi-chart"></div>
-          <div class="bi-block"></div>
-          <div class="bi-block"></div>
-        </div>
+        <a class="project-preview" href="case-studies/nsduh-dashboard.html" aria-label="Open the NSDUH dashboard case study"><img src="images/projects/nsduh-stress.png" alt="Coursework dashboard comparing distress across four age groups and the years 2021 to 2024." width="1730" height="970" loading="lazy" decoding="async" /></a>
       </article>
 
-      <!-- Project 04 — Stock & Macro -->
-      <article class="project-row reveal">
-        <div class="proj-num acid-text">04</div>
+      <article class="project-row reveal" aria-labelledby="risk-title">
+        <span class="proj-num acid-text" aria-hidden="true">04</span>
         <div class="proj-main">
-          <h3 class="proj-title">Stock Market &amp; Macroeconomic Analysis</h3>
-          <p class="proj-q">&ldquo;How do changing macroeconomic conditions alter the context in which market and firm-level performance should be interpreted?&rdquo;</p>
-          <dl class="case-lines">
-            <dt>Data</dt><dd>Market data &middot; FRED macroeconomic indicators</dd>
-            <dt>Signals</dt><dd>Inflation &middot; interest rates &middot; recession conditions &middot; monetary policy</dd>
-            <dt>Method</dt><dd>API integration &middot; time-series validation &middot; date-key standardization &middot; reproducible Python workflow</dd>
-            <dt>Use</dt><dd>Compare market behavior across changing economic regimes</dd>
-          </dl>
-          <div class="proj-tags">
-            <span class="ptag">Python</span>
-            <span class="ptag">FRED API</span>
-            <span class="ptag">Time-Series</span>
-            <span class="ptag">Econometrics</span>
-            <span class="ptag">Financial Analysis</span>
-          </div>
-          <a href="https://github.com/gracengg" class="proj-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+          <p class="project-status">Coursework &middot; credit-risk modeling</p>
+          <h3 class="proj-title" id="risk-title">New-to-Credit Consumer Risk Analysis</h3>
+          <p class="proj-q">How should risk assessment change when conventional credit history is limited?</p>
+          <p class="proj-desc">Compared Random Forest and XGBoost models for charge-off analysis in thin-file borrowers. Examined classification thresholds and feature importance to understand the trade-off between identifying risk and incorrectly rejecting viable applicants.</p>
+          <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Model Evaluation</span><span class="ptag">Decision Trade-offs</span></div>
+          <details class="case-disclosure"><summary>Explore the analytical choices</summary><div class="detail-grid">
+            <div class="detail-box"><h4>Limited history</h4><p>Consider how missing credit information affects the interpretation of a model score.</p></div>
+            <div class="detail-box"><h4>Threshold choice</h4><p>Evaluate the consequences of different error types instead of treating a default classification threshold as a business policy.</p></div>
+            <div class="detail-box"><h4>Evaluation</h4><p>Distinguish ranking performance, precision and recall. The analysis is an academic exercise, not a production lending system.</p></div>
+          </div></details>
         </div>
-        <div class="proj-visual market-vis" aria-hidden="true">
-          <p class="market-label">Market &amp; macro signals</p>
-        </div>
+        <aside class="project-aside" aria-label="Evaluation considerations"><span>Ranking</span><span>Error trade-offs</span><span>Interpretation</span><p>Model performance needs<br>a decision context.</p></aside>
       </article>
 
-      <!-- Additional Projects -->
-      <div class="mini-projects reveal">
-        <a href="https://github.com/gracengg/Relational_Database_Analytics_IMDb" class="mini-card" target="_blank" rel="noopener">
-          <small>Applied SQL / Analytics</small>
-          <h4>Relational Database Analytics &mdash; IMDb</h4>
-          <p>Genre trends and production patterns across the full IMDb dataset using SQL and Python visualization.</p>
-          <span class="mini-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a href="https://github.com/gracengg/Library_System_Management" class="mini-card" target="_blank" rel="noopener">
-          <small>Database Design</small>
-          <h4>Library System Management</h4>
-          <p>Multi-branch schema with data integrity enforcement, CRUD operations and CTAS reporting.</p>
-          <span class="mini-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a href="https://github.com/gracengg/Apple_Stock_Analysis" class="mini-card" target="_blank" rel="noopener">
-          <small>Python / APIs</small>
-          <h4>API-Based Stock Market Analysis</h4>
-          <p>Reproducible pipeline integrating external market data with AAPL stock prices for systematic analysis.</p>
-          <span class="mini-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a href="https://github.com/gracengg/Retail_Sales_Project_SQL" class="mini-card" target="_blank" rel="noopener">
-          <small>Business Intelligence</small>
-          <h4>Retail Sales Business Intelligence</h4>
-          <p>Structured retail transaction database uncovering customer behavior patterns and category performance trends.</p>
-          <span class="mini-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+      <div class="mini-projects reveal" aria-label="Additional analytical work">
+        <a href="https://github.com/gracengg/Apple_Stock_Analysis" class="mini-card" target="_blank" rel="noopener noreferrer"><small>Python / Financial Time Series</small><h3>Apple Stock Analysis</h3><p>Exploratory analysis of historical prices, trading volume and daily returns.</p><span class="mini-arrow" aria-hidden="true">&rarr;</span></a>
+        <a href="https://github.com/gracengg/Relational_Database_Analytics_IMDb" class="mini-card" target="_blank" rel="noopener noreferrer"><small>SQL / Analytics</small><h3>IMDb Relational Analytics</h3><p>Database queries and visual analysis of genre and production patterns.</p><span class="mini-arrow" aria-hidden="true">&rarr;</span></a>
+        <a href="https://github.com/gracengg/Retail_Sales_Project_SQL" class="mini-card" target="_blank" rel="noopener noreferrer"><small>Business Intelligence</small><h3>Retail Sales Analysis</h3><p>Structured transaction analysis of purchasing patterns and category performance.</p><span class="mini-arrow" aria-hidden="true">&rarr;</span></a>
       </div>
-
     </div>
   </section>
 
   <!-- RESEARCH -->
-  <section id="research" class="section section-wine">
+  <section id="research" class="section section-wine" aria-labelledby="research-heading">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label light-muted">04 / Research &amp; Applied Analysis</span>
-        <h2 class="section-title light">Research &amp; Applied Analysis</h2>
-      </div>
+      <div class="section-head"><span class="section-label light-muted">04 / Research &amp; Applied Analysis</span><h2 class="section-title light" id="research-heading">Research &amp; Applied Analysis</h2></div>
       <div class="research-grid">
-        <article class="research-card reveal">
-          <div>
-            <p class="research-type">Econometrics / Labor Economics &middot; 2025</p>
-            <h3 class="research-title">Beauty and the Labor Market &mdash; Replication &amp; Extension</h3>
-            <p class="research-desc">This study examined whether an economically irrelevant characteristic affects wages after controlling for human capital and demographics. Using 1,260 worker observations, OLS, predicted margins, quantile regression and gender interactions, the analysis found a significant wage penalty of approximately 13.3% for below-average appearance, increasing to roughly 23% near the 90th wage percentile, with no comparable statistically reliable above-average appearance premium.</p>
-            <p class="research-author">Grace Ngo</p>
-          </div>
-          <a href="publications/paper2.pdf" class="research-link">Read Paper &rarr;</a>
-        </article>
-        <article class="research-card reveal" style="transition-delay:.1s">
-          <div>
-            <p class="research-type">Behavioral Research / Statistics &middot; 2024</p>
-            <h3 class="research-title">The Effects of Emergency and Potential Reciprocity on Helping Behavior</h3>
-            <p class="research-desc">This study examined what changes a person&rsquo;s willingness to help when already under pressure. In a randomized 2&times;2 study with 248 undergraduate participants, time pressure reduced willingness to help while reciprocity produced a larger positive effect, with the two factors operating independently.</p>
-            <p class="research-author">Grace Ngo</p>
-          </div>
-          <a href="publications/paper1.pdf" class="research-link">Read Paper &rarr;</a>
-        </article>
+        <article class="research-card reveal"><div><p class="research-type">Climate Action Fellowship &middot; 2025 proposal</p><h3 class="research-title">Campus Energy Data &amp; Investment Decisions</h3><p class="research-desc">Developed a proposal for building-level metering and connected utility reporting. Compared the roles of EnergyCAP, GRITS and ENERGY STAR Portfolio Manager, and recommended a phased approach to measurement, investment tracking and stakeholder adoption.</p><p class="research-author">Grace Ngo &middot; Center for Sustainability Education</p></div><a href="case-studies/campus-energy.html" class="research-link">Read the proposal brief <span aria-hidden="true">&rarr;</span></a></article>
+        <article class="research-card reveal"><div><p class="research-type">Philosophy of Data &middot; course essay</p><h3 class="research-title">Credit Scores, Hiring &amp; the Limits of Data-Driven Judgment</h3><p class="research-desc">A Kantian argument examining the use of financial history as a proxy for character in employment screening. The essay develops a position, addresses an objection and considers the limits of reducing people to risk indicators.</p><p class="research-author">Grace Ngo &middot; DATA 198</p></div><a href="publications/credit-hiring-ethics.pdf" class="research-link">Read the essay <span class="file-type">PDF</span> <span aria-hidden="true">&rarr;</span></a></article>
+        <article class="research-card reveal"><div><p class="research-type">Econometrics / Labor Economics &middot; coursework</p><h3 class="research-title">Beauty and the Labor Market</h3><p class="research-desc">A replication and extension examining associations between appearance and wages using regression, predicted margins, quantile analysis and gender interactions. The project considers how estimates vary across groups and the wage distribution.</p><p class="research-author">Grace Ngo &middot; research summary</p></div><p class="research-note">Summary only; a supporting paper is not attached here.</p></article>
+        <article class="research-card reveal"><div><p class="research-type">Behavioral Research / Statistics &middot; 2024 coursework</p><h3 class="research-title">Emergency, Reciprocity &amp; Helping Behavior</h3><p class="research-desc">Analyzed responses to hypothetical helping scenarios from 248 undergraduates using a 2&times;2 design and two-way ANOVA. The paper examines time pressure and reciprocity, measurement reliability and the limits of self-reported willingness to help.</p><p class="research-author">Grace Ngo</p></div><a href="publications/paper1.pdf" class="research-link">Read the paper <span class="file-type">PDF</span> <span aria-hidden="true">&rarr;</span></a></article>
       </div>
     </div>
   </section>
@@ -471,22 +353,24 @@
           <p class="contact-sub">Open to new opportunities and conversations worth having. Whether there is a project, a role, or simply a question &mdash; I would be glad to hear from you.</p>
           <div class="contact-links">
             <a href="mailto:gracengggggg@gmail.com" class="btn btn-dark">gracengggggg@gmail.com &rarr;</a>
-            <a href="https://www.linkedin.com/in/gracee-ngo/" class="btn btn-outline-dark" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+            <a href="https://www.linkedin.com/in/gracee-ngo/" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn &rarr;</a>
           </div>
         </div>
         <div class="contact-right">
-          <form class="contact-form" id="contact-form" novalidate>
+          <form class="contact-form" id="contact-form" action="mailto:gracengggggg@gmail.com" method="get">
             <div class="cf-row">
-              <input type="text" id="cf-name" placeholder="Your name" autocomplete="name" />
-              <input type="email" id="cf-email" placeholder="Email address" autocomplete="email" />
+              <div class="field"><label for="cf-name">Your name</label><input type="text" id="cf-name" name="name" autocomplete="name" required maxlength="120" /></div>
+              <div class="field"><label for="cf-email">Email address</label><input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="254" /></div>
             </div>
-            <textarea id="cf-msg" rows="5" placeholder="Your message"></textarea>
-            <button type="submit" class="btn btn-dark">Send Message &rarr;</button>
+            <label for="cf-msg">Your message</label><textarea id="cf-msg" name="body" rows="5" required maxlength="5000" aria-describedby="contact-note"></textarea>
+            <button type="submit" class="btn btn-dark">Open email draft <span aria-hidden="true">&rarr;</span></button><p id="contact-note" class="form-note">Opens your email app with a draft. You review and send it there.</p>
           </form>
         </div>
       </div>
     </div>
   </section>
+
+  </main>
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
@@ -495,6 +379,6 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>

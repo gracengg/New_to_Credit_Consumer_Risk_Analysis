@@ -4,7 +4,7 @@ A static HTML, CSS and JavaScript portfolio for business analytics, financial op
 
 Preview: https://gracengg.github.io/portfolio-preview/
 
-This repository is the working preview. The main portfolio has a separate repository.
+This repository contains the current portfolio. The root homepage at https://gracengg.github.io/ redirects here so visitors reach the same current content.
 
 ## Structure
 
@@ -26,6 +26,8 @@ This repository is the working preview. The main portfolio has a separate reposi
 | Dickinson / CCLA | Experience summary and prototype scope brief | Supplied CCLA source is intermediate; individual records are not published |
 | New-to-credit | Reviewed code, demonstration notebook and historical evidence audit | Original-data rerun pending; no validated deployment claim |
 | NSDUH | Three original report screenshots and a methodology note | Coursework; descriptive and exploratory, not a validated clinical model |
+| Apple equity risk | Public Python package, six supplied snapshots, executed notebook, tests and rebuilt risk tables | Complete-period historical analysis; no trading or causal claim |
+| Retail revenue | Public SQL queries, loader, reconciled growth bridge and identity audit | Teaching data; no retention or commercial uplift claim |
 | Campus energy | Edited brief based on the April 20, 2025 fellowship report | Proposal; no adoption or realized savings claim |
 | Credit and hiring ethics | Original course essay PDF | Philosophical argument, not legal guidance or empirical hiring research |
 | Beauty and wages | Research summary | Supporting paper not supplied; no misleading download link |
@@ -47,4 +49,4 @@ Also review the homepage and case-study pages in a browser at phone, tablet and 
 
 ## Deployment
 
-GitHub Pages builds from this repository's configured branch. Publishing here updates the preview only. Relative links keep the site compatible with the `/portfolio-preview/` subpath. If moving it to another public URL, update the canonical and social metadata together.
+GitHub Pages builds from this repository's configured branch. Publishing here updates the current portfolio destination; the root homepage redirects here. Relative links keep the site compatible with the `/portfolio-preview/` subpath. If moving it to another public URL, update the canonical and social metadata together.

@@ -1,21 +1,29 @@
 # Analytical brief
 
-## Business question
+## Question
 
-How can an analyst study credit profiles with limited traditional history while making the consequences of a risk flag visible?
+How can limited-history credit profiles be ranked for analytical review while making the consequences of a flag visible?
 
-The original project compares Random Forest and XGBoost on synthetic new-to-credit profiles. A higher flagging threshold can reduce the number of positive flags and missed opportunities among non-charge-off records, but it can also miss more positive outcomes. Precision does not increase monotonically on every finite sample, and the best threshold cannot be inferred solely from whether a lender is a start-up or an established firm.
+## Data and model selection
 
-## Decision-relevant output
+The original project CSV contains 2,000 profiles, 283 recorded charge-offs and 830 missing FICO values. The reviewed implementation retains all rows, explicitly represents missing FICO and excludes outcome-related fields. The fixed split is 1,400 / 300 / 300.
 
-The reviewed workflow produces ranking metrics, precision and recall, false-positive and false-negative counts, flag rates and a threshold comparison. These outputs support a discussion of trade-offs. They do not by themselves specify an approval policy or demonstrate financial benefit.
+Validation average precision selects XGBoost (0.633), compared with Random Forest (0.614), logistic regression (0.508) and the no-skill baseline (0.143). This is a ranking-first research objective. Random Forest has higher validation precision at its own selected threshold; the selection rule is not a claim that XGBoost is best for every business cost structure.
 
-## What the evidence supports
+## Held-out result
 
-The saved notebook outputs show a validation comparison at a 0.70 threshold. Those results help reconstruct the original classroom argument, but outcome-related features, preprocessing before splitting and inconsistent test thresholds limit their interpretation. The publication therefore retains the figures as historical evidence rather than a performance headline.
+At the frozen 0.35 threshold, XGBoost identifies 34 of 42 positive test outcomes. It flags 75 profiles, 41 of which have no recorded charge-off. Recall is 81.0%, precision 45.3%, ROC AUC 0.917 and average precision 0.563. The no-skill average precision is the test positive share, 0.140.
 
-The strongest current contribution is the connection between business framing and evaluation discipline: define the label, review feature eligibility, preserve missing-score information, compare baselines, select on validation only and report limitations alongside results.
+## Decision implication
 
-## Next analytical milestone
+The output exposes review capacity and missed-case trade-offs. A team with different review costs or recall requirements would need to specify those objectives before model and threshold selection. The project does not infer financial value from classification metrics alone.
 
-With the original CSV, rerun the revised workflow and investigate any difference from the saved results. Keep the new evaluation separate from the demonstration. A prospective credit-risk study additionally needs time-defined inputs and outcomes before it can support claims about future borrowers.
+## Inspect the evidence
+
+- [Generated report](../reports/summary.md)
+- [Validation comparison](../reports/validation_comparison.csv)
+- [Threshold table](../reports/validation_thresholds.csv)
+- [Held-out metrics](../reports/test_summary.csv)
+- [Executed notebook](../notebooks/NTC_Consumer_Credit.ipynb)
+
+The original project uses a historical-status outcome. The current result is a retrospective reproduction on the pinned educational dataset.

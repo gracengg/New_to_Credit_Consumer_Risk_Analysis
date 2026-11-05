@@ -181,7 +181,8 @@ def build_models(y_train, seed=42, include_xgboost=True):
     return models
 
 
-def run_analysis(frame, output_dir, *, dataset_kind, config=None, include_xgboost=True):
+def run_analysis(frame, output_dir, *, dataset_kind, config=None, include_xgboost=True,
+                 source_path=None, make_figures=True):
     if dataset_kind not in {'demonstration', 'coursework'}:
         raise ValueError('dataset_kind must identify demonstration or coursework input.')
     config = config or EvaluationConfig()
@@ -211,8 +212,8 @@ def run_analysis(frame, output_dir, *, dataset_kind, config=None, include_xgboos
     )
     report = {
         'dataset_kind': dataset_kind,
-        'status': 'Demonstration only; not the original project results.' if dataset_kind == 'demonstration'
-                  else 'New retrospective evaluation; verify source and feature timing before interpretation.',
+        'status': 'Software demonstration on generated toy data.' if dataset_kind == 'demonstration'
+                  else 'Reproduced retrospective evaluation on the original project dataset.',
         'config': asdict(config), 'n_rows': len(frame),
         'splits': {'train': len(y_train), 'validation': len(y_val), 'test': len(y_test)},
         'features': list(X.columns), 'excluded_outcome_or_review_fields': list(EXCLUDED),
@@ -222,7 +223,7 @@ def run_analysis(frame, output_dir, *, dataset_kind, config=None, include_xgboos
         'data_fingerprint_sha256': hashlib.sha256(
             pd.util.hash_pandas_object(frame, index=True).values.tobytes()
         ).hexdigest(),
-        'environment': {p: importlib.metadata.version(p) for p in ['numpy', 'pandas', 'scikit-learn']},
+        'environment': {p: importlib.metadata.version(p) for p in ['numpy', 'pandas', 'scikit-learn', 'matplotlib']},
         'limitations': [
             'Ever_ChargeOff is a historical-status label; no prospective performance horizon is established.',
             'Feature timestamps and a data-generation specification are unavailable for the original project.',
@@ -232,11 +233,21 @@ def run_analysis(frame, output_dir, *, dataset_kind, config=None, include_xgboos
     }
     if include_xgboost:
         report['environment']['xgboost'] = importlib.metadata.version('xgboost')
+    if source_path is not None:
+        report['source_file_sha256'] = hashlib.sha256(Path(source_path).read_bytes()).hexdigest()
+    report['split_class_counts'] = {
+        name: {'n': len(labels), 'positive': int(labels.sum()), 'negative': int(len(labels)-labels.sum())}
+        for name, labels in [('train', y_train), ('validation', y_val), ('test', y_test)]
+    }
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     validation_table.to_csv(output_dir / 'validation_comparison.csv', index=False)
-    pd.concat(threshold_tables, ignore_index=True).to_csv(output_dir / 'validation_thresholds.csv', index=False)
+    thresholds = pd.concat(threshold_tables, ignore_index=True)
+    thresholds.to_csv(output_dir / 'validation_thresholds.csv', index=False)
     (output_dir / 'evaluation.json').write_text(json.dumps(report, indent=2, allow_nan=False) + '\n')
+    from .reporting import write_report
+    write_report(frame, report, validation_table, thresholds, y_test, test_scores,
+                 output_dir, make_figures=make_figures)
     return report, validation_table
 
 
@@ -303,8 +314,8 @@ def load_csv(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    source = parser.add_mutually_exclusive_group(required=True)
-    source.add_argument('--data', type=Path, help='Local coursework CSV; never uploaded by this program.')
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument('--data', type=Path, help='CSV input; defaults to the locally downloaded original project dataset.')
     source.add_argument('--demo', action='store_true', help='Run on newly generated verification data.')
     parser.add_argument('--output', type=Path, default=Path('outputs/latest'))
     parser.add_argument('--seed', type=int, default=42)
@@ -313,16 +324,19 @@ def main():
     parser.add_argument('--without-xgboost', action='store_true')
     parser.add_argument('--tableau-export', type=Path, help='Optional local row-level CSV export; do not commit it.')
     args = parser.parse_args()
+    if not args.demo and args.data is None:
+        args.data = Path(__file__).resolve().parents[1] / 'data/source/v_credit_data_NTC_v51825.csv'
     if args.data and args.tableau_export and args.data.resolve() == args.tableau_export.resolve():
         parser.error('The Tableau export must not overwrite the input CSV.')
     if args.data and not args.data.is_file():
-        parser.error(f'Data file not found: {args.data}. The original CSV is not bundled.')
+        parser.error(f'Data file not found: {args.data}. Run python scripts/fetch_data.py first, or specify --data.')
     try:
         frame = make_demo_data(seed=args.seed) if args.demo else load_csv(args.data)
         report, comparison = run_analysis(
             frame, args.output, dataset_kind='demonstration' if args.demo else 'coursework',
             config=EvaluationConfig(args.seed, args.minimum_recall, args.minimum_flags),
             include_xgboost=not args.without_xgboost,
+            source_path=args.data,
         )
         if args.tableau_export:
             args.tableau_export.parent.mkdir(parents=True, exist_ok=True)

@@ -1,5 +1,7 @@
 """Behavioral checks for leakage boundaries, threshold policy and reproducibility."""
 import json
+import copy
+import hashlib
 from pathlib import Path
 import tempfile
 import unittest
@@ -9,7 +11,10 @@ import numpy as np
 from ntc_risk.pipeline import (
     EvaluationConfig, build_models, choose_threshold, evaluate_scores,
     make_demo_data, prepare_data, run_analysis, split_data, tableau_export,
+    load_csv,
 )
+from ntc_risk.reporting import profile_data
+from scripts.verify_reproduction import verify
 
 
 class EvaluationTests(unittest.TestCase):
@@ -110,6 +115,33 @@ class EvaluationTests(unittest.TestCase):
             self.assertAlmostEqual(row['precision'],row['tp']/(row['tp']+row['fp']))
             self.assertAlmostEqual(row['recall'],row['tp']/(row['tp']+row['fn']))
             self.assertEqual(row['n'],sum(row[k] for k in ['tn','fp','fn','tp']))
+
+    def test_original_source_integrity_and_coverage(self):
+        root = Path(__file__).parents[1]
+        source = root/'data/source/v_credit_data_NTC_v51825.csv'
+        manifest = json.loads((root/'docs/source_manifest.json').read_text())['original_dataset']
+        self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), manifest['sha256'])
+        frame = load_csv(source)
+        profile, schema, groups = profile_data(frame)
+        self.assertEqual(frame.shape, (2000, 27))
+        self.assertEqual(profile['positive_outcomes'], 283)
+        self.assertEqual(profile['missing_fico_count'], 830)
+        self.assertEqual(int(groups['n'].sum()), len(frame))
+        self.assertEqual(int(groups['positive'].sum()), 283)
+        self.assertEqual(set(schema['column']), set(frame.columns))
+
+    def test_reproduction_guard_rejects_changed_selection_and_counts(self):
+        root = Path(__file__).parents[1]
+        expected = json.loads((root/'reports/evaluation.json').read_text())
+        verify(expected, copy.deepcopy(expected))
+        for field in ['selected_threshold', 'selected_model_test']:
+            changed = copy.deepcopy(expected)
+            if field == 'selected_threshold':
+                changed[field] = .99
+            else:
+                changed[field]['tp'] += 1
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                verify(expected, changed)
 
 
 if __name__=='__main__':

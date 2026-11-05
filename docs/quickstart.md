@@ -33,7 +33,7 @@ For automated execution, run `python scripts/execute_notebook.py`. It uses the i
 
 ## Expected outputs
 
-`reports/` contains `evaluation.json`, validation comparison and threshold CSVs, test summary, data profile, schema profile, FICO coverage, four SVG figures and `summary.md`. `data/tableau_input.csv` is a generated local reporting file and is ignored by Git.
+`reports/` contains `evaluation.json`, validation comparison and threshold CSVs, test summary, data profile, schema profile, FICO coverage, four SVG figures, PNG notebook previews and `summary.md`. `data/tableau_input.csv` is a generated local reporting file and is ignored by Git.
 
 ## Troubleshooting
 

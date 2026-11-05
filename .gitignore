@@ -8,3 +8,4 @@ data/*.csv
 data/**/*.csv
 data/**/*.parquet
 *.joblib
+reports/figures/*.png

@@ -42,6 +42,8 @@ def profile_data(frame):
 
 def _save(fig, path):
     fig.savefig(path, format='svg', bbox_inches='tight', metadata={'Date': None})
+    # Raster previews preserve typography in notebook hosts that sanitize inline SVG styles.
+    fig.savefig(path.with_suffix('.png'), dpi=160, bbox_inches='tight')
     plt.close(fig)
 
 

@@ -11,9 +11,9 @@ A fresh HTTPS download of the pinned public source was verified against the reco
 - Twelve behavioral tests pass, covering feature exclusions, stratified disjoint splits, training-only imputation, frozen thresholds, reporting boundaries, source integrity and reproduction guards.
 - The complete original CSV runs through all four model pipelines and reproduces the published metrics.
 - An independent fresh run matches source fingerprints, split counts, frozen selection and held-out metrics within the declared tolerance.
-- The notebook contains seven executed code cells and four embedded SVG figures. Its format validates against the notebook schema and contains no error outputs.
+- The notebook contains seven executed code cells and four embedded PNG figure previews. Its format validates against the notebook schema and contains no error outputs.
 - Saved notebook outputs were captured sequentially with IPython because the publication host prohibits kernel sockets. The checked-in execution helper also supports a fresh Jupyter kernel, which is the default mode used in GitHub Actions.
-- All four figures were rendered and visually inspected for labels, clipping and legibility.
+- All four vector figures and their PNG previews were rendered and visually inspected for labels, clipping and legibility.
 - The local Tableau CSV export completes. Workbook XML parses, and referenced source columns are checked against the generated input. Native Tableau Desktop rendering is not claimed.
 
 ## Automated checks
